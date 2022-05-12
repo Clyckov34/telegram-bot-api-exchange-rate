@@ -8,9 +8,9 @@ import (
 )
 
 var (
-	start           = fmt.Sprintln("Добро пожаловать! Здесь Вы можете узнать курсы валют ЦБ к соотношению $USD. \n\n- Меню курсов валют: /course \n- Помощь: /help")
+	welcom          = fmt.Sprintln("Добро пожаловать! Здесь Вы можете узнать курсы валют ЦБ к соотношению $USD. \n\n- Меню курсов валют: /course \n- Помощь: /help")
 	descriptionHelp = fmt.Sprintln("- Меню курсов валют: /course \nПосле ввода команды откроется меню с курсами валют, выбираете нужный курс. \n- Поддреживает ввод курса на прямую\nНапример: RUB")
-	help            = fmt.Sprintln(`
+	currencyList    = fmt.Sprintln(`
 	- 'AUD' - Австралийский доллар
 	- 'AZN' - Азербайджанский манат
 	- 'GBP' - Фунт стерлингов
@@ -80,9 +80,9 @@ func command(bot *tgbotapi.BotAPI, updates tgbotapi.UpdatesChannel) error {
 
 		switch update.Message.Text {
 		case "/start":
-			msg.Text = start
+			msg.Text = welcom
 		case "/help":
-			msg.Text = descriptionHelp + "\n" + help
+			msg.Text = descriptionHelp + "\n" + currencyList
 		case "/course":
 			msg.Text = "Меню курсов валют"
 			msg.ReplyMarkup = numericKeyboard

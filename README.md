@@ -42,8 +42,8 @@ Telegram Bot - Курсы валют ЦБ банка РФ.
 `go run cmd/telegramBot/main.go -t=TOKEN_TELEGRAM_BOT`
 
 ### DockerFile:
-Build - `sudo docker build -t tg .`
+Build - `docker build -t tg .`
 
-Run - `sudo docker run tg ./app -t=TOKEN_TELEGRAM_BOT`
+Run -   `docker run tg ./app -t=TOKEN_TELEGRAM_BOT`
 
 
