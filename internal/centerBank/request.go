@@ -10,17 +10,27 @@ import (
 
 const urlBankJSON = "https://cdn.cur.su/api/cbr.json"
 
-//getCourse курс
-func GetCourse(currencies string) (string, error) {
+//request запрос в банк о курсах валют
+func request() ([]byte, error) {
 	res, err := http.Get(urlBankJSON)
 	if err != nil {
-		return "", errors.New("ошибка запроса на сервео ЦБ")
+		return nil, errors.New("ошибка запроса на сервео ЦБ")
 	}
 	defer res.Body.Close()
 
 	bodyByte, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		return "", errors.New("ошибка получения тела документа")
+		return nil, errors.New("ошибка получения тела документа")
+	}
+
+	return bodyByte, nil
+}
+
+//getCourse курс
+func GetCourse(currencies string) (string, error) {
+	bodyByte, err := request()
+	if err != nil {
+		return "", err
 	}
 
 	var course map[string]map[string]interface{}
