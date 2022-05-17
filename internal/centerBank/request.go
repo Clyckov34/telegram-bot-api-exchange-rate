@@ -11,7 +11,7 @@ import (
 const urlBankJSON = "https://cdn.cur.su/api/cbr.json"
 
 //request запрос в банк о курсах валют
-func request() ([]byte, error) {
+func request() (body []byte, err error) {
 	res, err := http.Get(urlBankJSON)
 	if err != nil {
 		return nil, errors.New("ошибка запроса на сервео ЦБ")
@@ -26,8 +26,8 @@ func request() ([]byte, error) {
 	return bodyByte, nil
 }
 
-//getCourse курс
-func GetCourse(currencies string) (string, error) {
+//getCourse курс валюты
+func GetCourse(currencies string) (currencie string, err error) {
 	bodyByte, err := request()
 	if err != nil {
 		return "", err

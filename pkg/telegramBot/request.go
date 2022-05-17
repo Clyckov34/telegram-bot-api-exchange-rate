@@ -7,7 +7,7 @@ import (
 )
 
 //request запрос в Телеграм бот
-func (m *BotSetting) request() (*tgbotapi.BotAPI, error) {
+func (m *BotSetting) request() (api *tgbotapi.BotAPI, err error) {
 	bot, err := tgbotapi.NewBotAPI(m.Token)
 	if err != nil {
 		return nil, errors.New("ошибка в подключении в Телеграм бот")

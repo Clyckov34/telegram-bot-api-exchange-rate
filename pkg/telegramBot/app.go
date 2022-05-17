@@ -49,7 +49,7 @@ var (
 )
 
 //App приложения запуска бота
-func App(token string) error {
+func App(token string) (err error) {
 	var tgAPI = BotSetting{
 		Token:   token,
 		Timeout: 60,
@@ -69,14 +69,14 @@ func App(token string) error {
 }
 
 //command команды телеграмм бота
-func command(bot *tgbotapi.BotAPI, updates tgbotapi.UpdatesChannel) error {
+func command(bot *tgbotapi.BotAPI, updates tgbotapi.UpdatesChannel) (err error) {
 	for update := range updates {
 		if update.Message == nil {
 			continue
 		}
 
 		msg := tgbotapi.NewMessage(update.Message.Chat.ID, update.Message.Text)
-		var currency string
+		var currencie string
 
 		switch update.Message.Text {
 		case "/start":
@@ -87,86 +87,86 @@ func command(bot *tgbotapi.BotAPI, updates tgbotapi.UpdatesChannel) error {
 			msg.Text = "Меню курсов валют"
 			msg.ReplyMarkup = numericKeyboard
 		case "AUD":
-			currency = "AUD"
+			currencie = "AUD"
 		case "AZN":
-			currency = "AZN"
+			currencie = "AZN"
 		case "GBP":
-			currency = "GBP"
+			currencie = "GBP"
 		case "AMD":
-			currency = "AMD"
+			currencie = "AMD"
 		case "BYN":
-			currency = "BYN"
+			currencie = "BYN"
 		case "BGN":
-			currency = "BGN"
+			currencie = "BGN"
 		case "BRL":
-			currency = "BRL"
+			currencie = "BRL"
 		case "HUF":
-			currency = "HUF"
+			currencie = "HUF"
 		case "HKD":
-			currency = "HKD"
+			currencie = "HKD"
 		case "DKK":
-			currency = "DKK"
+			currencie = "DKK"
 		case "USD":
-			currency = "USD"
+			currencie = "USD"
 		case "EUR":
-			currency = "EUR"
+			currencie = "EUR"
 		case "INR":
-			currency = "INR"
+			currencie = "INR"
 		case "KZT":
-			currency = "KZT"
+			currencie = "KZT"
 		case "CAD":
-			currency = "CAD"
+			currencie = "CAD"
 		case "KGS":
-			currency = "KGS"
+			currencie = "KGS"
 		case "CNY":
-			currency = "CNY"
+			currencie = "CNY"
 		case "MDL":
-			currency = "MDL"
+			currencie = "MDL"
 		case "NOK":
-			currency = "NOK"
+			currencie = "NOK"
 		case "PLN":
-			currency = "PLN"
+			currencie = "PLN"
 		case "RON":
-			currency = "RON"
+			currencie = "RON"
 		case "XDR":
-			currency = "XDR"
+			currencie = "XDR"
 		case "SGD":
-			currency = "SGD"
+			currencie = "SGD"
 		case "TJS":
-			currency = "TJS"
+			currencie = "TJS"
 		case "TRY":
-			currency = "TRY"
+			currencie = "TRY"
 		case "TMT":
-			currency = "TMT"
+			currencie = "TMT"
 		case "UZS":
-			currency = "UZS"
+			currencie = "UZS"
 		case "UAH":
-			currency = "UAH"
+			currencie = "UAH"
 		case "CZK":
-			currency = "CZK"
+			currencie = "CZK"
 		case "SEK":
-			currency = "SEK"
+			currencie = "SEK"
 		case "CHF":
-			currency = "CHF"
+			currencie = "CHF"
 		case "ZAR":
-			currency = "ZAR"
+			currencie = "ZAR"
 		case "KRW":
-			currency = "KRW"
+			currencie = "KRW"
 		case "JPY":
-			currency = "JPY"
+			currencie = "JPY"
 		case "RUB":
-			currency = "RUB"
+			currencie = "RUB"
 		default:
 			msg.Text = "No Command"
 		}
 
-		resCurrency, err := centerBank.GetCourse(currency)
+		resCurrency, err := centerBank.GetCourse(currencie)
 		if err != nil {
 			msg.Text = err.Error()
 		}
 
-		if currency != "" && resCurrency != "" {
-			msg.Text = fmt.Sprintf("USD / %v = %v\n", currency, resCurrency)
+		if currencie != "" && resCurrency != "" {
+			msg.Text = fmt.Sprintf("USD / %v = %v\n", currencie, resCurrency)
 		}
 
 		if _, err := bot.Send(msg); err != nil {
