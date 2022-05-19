@@ -14,7 +14,7 @@ const urlBankJSON = "https://cdn.cur.su/api/cbr.json"
 func request() (body []byte, err error) {
 	res, err := http.Get(urlBankJSON)
 	if err != nil {
-		return nil, errors.New("ошибка запроса на сервео ЦБ")
+		return nil, errors.New("ошибка запроса на сервер ЦБ")
 	}
 	defer res.Body.Close()
 
@@ -27,7 +27,7 @@ func request() (body []byte, err error) {
 }
 
 //getCourse курс валюты
-func GetCourse(currencies string) (currencie string, err error) {
+func GetCourse(currencie string) (currencies string, err error) {
 	bodyByte, err := request()
 	if err != nil {
 		return "", err
@@ -36,5 +36,5 @@ func GetCourse(currencies string) (currencie string, err error) {
 	var course map[string]map[string]interface{}
 	json.Unmarshal(bodyByte, &course)
 
-	return fmt.Sprintf("%.2f", course["rates"][currencies]), nil
+	return fmt.Sprintf("%.2f", course["rates"][currencie]), nil
 }

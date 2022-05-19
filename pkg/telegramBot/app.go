@@ -61,6 +61,8 @@ func App(token string) (err error) {
 	}
 
 	updates := tgAPI.setting(bot)
+	//tgAPI.debug(bot)
+
 	if err = command(bot, updates); err != nil {
 		return err
 	}

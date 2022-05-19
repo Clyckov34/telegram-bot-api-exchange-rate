@@ -6,8 +6,12 @@ import (
 
 //setting Настройка Бот телеграм
 func (m *BotSetting) setting(tg *tgbotapi.BotAPI) (channel tgbotapi.UpdatesChannel) {
-	tg.Debug = true
 	u := tgbotapi.NewUpdate(0)
 	u.Timeout = m.Timeout
 	return tg.GetUpdatesChan(u)
+}
+
+//debug Дебаг. проверка
+func (m *BotSetting) debug(tg *tgbotapi.BotAPI) {
+	tg.Debug = true
 }
