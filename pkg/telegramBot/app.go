@@ -172,7 +172,7 @@ func command(bot *tgbotapi.BotAPI, updates tgbotapi.UpdatesChannel) (err error) 
 		}
 
 		if currencie != "" && resCurrency != "" {
-			msg.Text = fmt.Sprintf("USD / %v = %v\n", currencie, resCurrency)
+			msg.Text = fmt.Sprintf("1 USD =  %v %v\n", resCurrency, currencie)
 		}
 
 		if _, err := bot.Send(msg); err != nil {
