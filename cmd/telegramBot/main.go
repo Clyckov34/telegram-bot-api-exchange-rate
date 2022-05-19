@@ -6,15 +6,17 @@ import (
 	"telegram/pkg/telegramBot"
 )
 
-var token string
+var parameters = telegramBot.BotSetting{}
 
 func init() {
-	flag.StringVar(&token, "t", "", "Token Bot Telegram")
+	flag.StringVar(&parameters.Token, "t", "", "Token. Bot API Telegram")
+	flag.IntVar(&parameters.Timeout, "to", 30, "Timeout. Интервал времяни обновления запросов")
+	flag.BoolVar(&parameters.Debug, "d", false, "Debug, проверка логов")
 }
 
 func main() {
 	flag.Parse()
-	if err := telegramBot.App(token); err != nil {
+	if err := telegramBot.App(parameters); err != nil {
 		log.Println(err)
 	}
 }

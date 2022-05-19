@@ -49,10 +49,11 @@ var (
 )
 
 //App приложения запуска бота
-func App(token string) (err error) {
+func App(parameters BotSetting) (err error) {
 	var tgAPI = BotSetting{
-		Token:   token,
-		Timeout: 60,
+		Token:   parameters.Token,
+		Timeout: parameters.Timeout,
+		Debug:   parameters.Debug,
 	}
 
 	bot, err := tgAPI.request()
@@ -61,7 +62,10 @@ func App(token string) (err error) {
 	}
 
 	updates := tgAPI.setting(bot)
-	//tgAPI.debug(bot)
+
+	if tgAPI.Debug {
+		tgAPI.debug(bot)
+	}
 
 	if err = command(bot, updates); err != nil {
 		return err

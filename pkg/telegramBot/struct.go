@@ -4,4 +4,5 @@ package telegramBot
 type BotSetting struct {
 	Token   string
 	Timeout int
+	Debug   bool
 }
