@@ -23,7 +23,7 @@ func main() {
 		os.Exit(1)
 	} else {
 		if err := telegramBot.App(parameters); err != nil {
-			log.Fatalln(err)
+			log.Panicln(err)
 		}
 	}
 }
