@@ -3,6 +3,8 @@ package main
 import (
 	"flag"
 	"log"
+	"os"
+	"telegram/internal/check"
 	"telegram/pkg/telegramBot"
 )
 
@@ -16,7 +18,12 @@ func init() {
 
 func main() {
 	flag.Parse()
-	if err := telegramBot.App(parameters); err != nil {
-		log.Println(err)
+
+	if check.Flag(parameters.Token) != nil {
+		os.Exit(1)
+	} else {
+		if err := telegramBot.App(parameters); err != nil {
+			log.Fatalln(err)
+		}
 	}
 }
