@@ -1,6 +1,7 @@
 package telegramBot
 
 import (
+	"errors"
 	"fmt"
 	"telegram/internal/centerBank"
 
@@ -139,4 +140,25 @@ func command(bot *tgbotapi.BotAPI, updates tgbotapi.UpdatesChannel) (err error) 
 		}
 	}
 	return nil
+}
+
+//setting Настройка Бот телеграм
+func (m *BotSetting) setting(tg *tgbotapi.BotAPI) (channel tgbotapi.UpdatesChannel) {
+	u := tgbotapi.NewUpdate(0)
+	u.Timeout = m.Timeout
+	return tg.GetUpdatesChan(u)
+}
+
+//debug Дебаг. проверка
+func (m *BotSetting) debug(tg *tgbotapi.BotAPI) {
+	tg.Debug = true
+}
+
+//request запрос в Телеграм бот
+func (m *BotSetting) request() (api *tgbotapi.BotAPI, err error) {
+	bot, err := tgbotapi.NewBotAPI(m.Token)
+	if err != nil {
+		return nil, errors.New("ошибка в подключении в Телеграм бот")
+	}
+	return bot, nil
 }
