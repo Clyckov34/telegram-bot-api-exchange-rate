@@ -1,4 +1,4 @@
-### ExchangeRateCenterBankRU
+# Telegram Bot "Exchange Rate Center Bank RU"
 Telegram Bot - Курсы валют ЦБ банка РФ.
 
 ### Перечень валют:
@@ -39,14 +39,23 @@ Telegram Bot - Курсы валют ЦБ банка РФ.
 - `RUB` - Российский рубль
 
 ### Запуск утилиты:
-`go run cmd/telegramBot/main.go -t=TOKEN_TELEGRAM_BOT`
+- `go run cmd/telegramBot/main.go -t=TOKEN_TELEGRAM_BOT`
 
 ### Запуск утилиты c подробными флагами:
-`go run cmd/telegramBot/main.go --help`
+- `go run cmd/telegramBot/main.go --help`
 
 ### DockerFile:
-Build - `docker build -t tg .`
+- Build - `docker build -t tg .`
 
-Run -   `docker run tg ./app -t=TOKEN_TELEGRAM_BOT`
+- Run -   `docker run tg ./app -t=TOKEN_TELEGRAM_BOT`
 
+### Linux: Автозапуск Telegram Bot systemctl
+1. Скомпилируйте приложения ` go build cmd/telegramBot/main.go `
+2. Разместите скомпилированный файл ` main ` в каталог ` /usr/local/bin/MY_PROJECT`
+3. Откройте файл ` my_telegram.service ` Укажите путь к приложению, и токен Telegram Bot
+4. Сохраните, и закройте файл
+5. Разместите файл ` my_telegram.service ` в каталоге /etc/systemd/system/
+6. Запустите скрипт как службу:
+- ` sudo systemctl enable my_telegram `
 
+- ` sudo systemctl start my_telegram `

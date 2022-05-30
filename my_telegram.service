@@ -1,0 +1,12 @@
+[Unit]
+Description=Telegram Bot API Exchange Rate
+After=network.target
+
+[Service]
+RemainAfterExit=true
+ExecStart=/usr/local/bin/MY_PROJECT/main -t=TELEGRAM_TOKEN
+Type=simple
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
