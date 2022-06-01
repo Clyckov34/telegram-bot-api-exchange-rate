@@ -9,6 +9,7 @@ ExecStart=/usr/local/bin/tgBot/main -t=TOKEN_API
 WorkingDirectory=/usr/local/bin/tgBot
 Type=simple
 Restart=always
+RestartSec=10
 
 [Install]
 WantedBy=multi-user.target
