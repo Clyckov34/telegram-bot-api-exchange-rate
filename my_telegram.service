@@ -5,8 +5,8 @@ After=network.target
 [Service]
 RemainAfterExit=true
 User=root
-ExecStart=/usr/local/bin/tgBot/main -t=TOKEN_API
-WorkingDirectory=/usr/local/bin/tgBot
+ExecStart=/usr/local/bin/MY_PROJECT/main -t=TOKEN_API
+WorkingDirectory=/usr/local/bin/MY_PROJECT
 Type=simple
 Restart=always
 RestartSec=10
