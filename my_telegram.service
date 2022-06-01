@@ -4,7 +4,9 @@ After=network.target
 
 [Service]
 RemainAfterExit=true
-ExecStart=/usr/local/bin/MY_PROJECT/main -t=TELEGRAM_TOKEN
+User=root
+ExecStart=/usr/local/bin/tgBot/main -t=TOKEN_API
+WorkingDirectory=/usr/local/bin/tgBot
 Type=simple
 Restart=always
 
